@@ -5,6 +5,27 @@ import { shoes, statistics } from "../constants";
 import { bigShoe1 } from "../assets/images";
 import ShoeCard from "../components/ShoeCard";
 import { useState } from "react";
+import { motion, AnimatePresence, MotionConfig } from "framer-motion";
+
+const variants = {
+  hide: {
+    y: "-100vh",
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      delay: 0.3,
+    },
+  },
+  exit: {
+    y: 100,
+    opacity: [0.5, 0],
+  },
+};
 
 const Hero = () => {
   const [bigShoeImg, setBigShoeImg] = useState(bigShoe1);
@@ -42,16 +63,25 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-primary bg-hero bg-cover bg-center">
-        <img
-          src={bigShoeImg}
-          alt="shoe"
-          width={610}
-          height={500}
-          className="object-contain relative z-10"
-        />
+      <div className="relative flex-1 flex justify-center items-end xl:items-center min-h-screen max-xl:py-40 bg-primary bg-hero bg-cover bg-center">
+        <MotionConfig transition={{ duration: 0.7 }}>
+          <AnimatePresence initial={false}>
+            <motion.img
+              className="object-contain absolute max-xl:mb-[100px]"
+              key={bigShoeImg}
+              width={610}
+              height={500}
+              src={bigShoeImg}
+              initial="hide"
+              animate="animate"
+              exit="exit"
+              variants={variants}
+              alt="shoe"
+            />
+          </AnimatePresence>
+        </MotionConfig>
 
-        <div className="flex sm:gap-6 gap-4 absolute -bottom-[5%] sm:left-[10%] max-sm:px-6">
+        <div className="flex sm:gap-6 gap-4 z-10 absolute bottom-0 max-sm:px-6">
           {shoes.map((shoe, index) => (
             <div key={index}>
               <ShoeCard

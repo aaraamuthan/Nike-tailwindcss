@@ -1,5 +1,6 @@
 import React from "react";
 import { star } from "../assets/icons";
+import { motion } from "framer-motion";
 
 export const CustomerReviewCard = ({
   imgURL,
@@ -9,7 +10,9 @@ export const CustomerReviewCard = ({
 }) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <img
+      <motion.img
+        initial={{ scale: 1.15 }}
+        whileHover={{ opacity: 0.7, scale: 1 }}
         src={imgURL}
         alt={name}
         className="w-[120px] h-[120px] object-cover rounded-full"

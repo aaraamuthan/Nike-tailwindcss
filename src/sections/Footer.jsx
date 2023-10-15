@@ -2,6 +2,7 @@ import React from "react";
 import { footerLogo } from "../assets/images";
 import { footerLinks, socialMedia } from "../constants";
 import { copyrightSign } from "../assets/icons";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
@@ -35,12 +36,13 @@ const Footer = () => {
               </h4>
               <ul>
                 {footerSection.links.map((footerLink) => (
-                  <li
+                  <motion.li
+                    whileHover={{ x: 5 }}
                     key={footerLink.name}
-                    className="mt-3 text-white-400 text-base leading-normal font-montserrat cursor-pointer hover:text-slate-gray"
+                    className="mt-3 text-slate-200 text-base leading-normal font-montserrat cursor-pointer hover:text-white-400"
                   >
                     <a href={footerLink.link}>{footerLink.name}</a>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>

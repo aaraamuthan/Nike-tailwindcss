@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Button = ({
   label,
@@ -9,7 +10,9 @@ const Button = ({
   fullWidth,
 }) => {
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.1, img: { x: 10 } }}
+      whileTap={{ scale: 0.75 }}
       className={`flex justify-center items-center gap-2 px-7 py-4 border font-montserrat text-lg leading-none rounded-full
     ${
       backgroundColor
@@ -27,7 +30,7 @@ const Button = ({
           className="ml-2 rounded-full w-5 h-5"
         />
       )}
-    </button>
+    </motion.button>
   );
 };
 
